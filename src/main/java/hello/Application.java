@@ -1,9 +1,16 @@
 package hello;
 
+import hello.entity.User;
+import hello.utils.HibernateUtil;
 import org.apache.catalina.session.FileStore;
 import org.apache.catalina.session.PersistentManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -18,8 +25,9 @@ import java.util.Arrays;
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-public class Application {
+public class Application implements CommandLineRunner {
     private Log log = LogFactory.getLog(Application.class);
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     @Bean
     public EmbeddedServletContainerCustomizer containerCustomizer() {
@@ -46,5 +54,28 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try{
+            transaction = session.beginTransaction();
+            User newUser = new User("User", "One", "User1",
+                    "User1@mail.com", "pass", "1234567800");
+            session.saveOrUpdate("User", newUser);
+            transaction.commit();
+
+        } catch (Exception e){
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+            HibernateUtil.closeSessionFactory();
+        }
+
     }
 }
