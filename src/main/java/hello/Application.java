@@ -58,24 +58,24 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        try{
-            transaction = session.beginTransaction();
-            User newUser = new User("User", "One", "User1",
-                    "User1@mail.com", "pass", "1234567800");
-            session.saveOrUpdate("User", newUser);
-            transaction.commit();
-
-        } catch (Exception e){
-            if (transaction != null){
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-            HibernateUtil.closeSessionFactory();
-        }
+//        Session session = sessionFactory.openSession();
+//        Transaction transaction = null;
+//        try{
+//            transaction = session.beginTransaction();
+//            User newUser = new User("User", "One", "User1",
+//                    "User1@mail.com", "pass", "1234567800");
+//            session.saveOrUpdate("User", newUser);
+//            transaction.commit();
+//
+//        } catch (Exception e){
+//            if (transaction != null){
+//                transaction.rollback();
+//            }
+//            e.printStackTrace();
+//        } finally {
+//            session.close();
+//            HibernateUtil.closeSessionFactory();
+//        }
 
     }
 }

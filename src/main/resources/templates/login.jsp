@@ -6,6 +6,11 @@
 </head>
 <body>
     <div th:fragment="content">
+
+        <form th:action="@{/signup}" method="post">
+            <div><input type="submit" value="Register"/></div>
+        </form>
+
         <div th:if="${param.error}">
             Invalid username and password.
         </div>
@@ -17,6 +22,7 @@
             <div><label> Password: <input type="password" name="password"/> </label></div>
             <div><input type="submit" value="Sign In"/></div>
         </form>
+
     </div>
 </body>
 </html>

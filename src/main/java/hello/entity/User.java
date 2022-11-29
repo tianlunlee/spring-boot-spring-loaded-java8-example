@@ -3,21 +3,38 @@ package hello.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name="User")
 public class User {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="firstName", nullable = false)
     private String firstName;
+
+    @Column(name="lastName", nullable = false)
     private String lastName;
+
+    @Column(name="username", nullable = false)
     private String username;
+
+    @Column(name="password", nullable = false)
     private String password;
+
+    @Column(name="address")
     private String address;
+
+    @Column(name="email", nullable = false)
     private String email;
 
+    @Column(name="phone", nullable = false)
     private String phone;
+
+    @Column(name="isAdmin", nullable = false)
     private boolean isAdmin;
 
+    @Column(name="isActive", nullable = false)
     private boolean isActive;
 
     protected User() {}
@@ -87,6 +104,10 @@ public class User {
 
     public boolean isActive() {
         return this.isActive;
+    }
+
+    public boolean verifyPassword(String passwordEntry) {
+        return this.password.equals(passwordEntry);
     }
 
 }

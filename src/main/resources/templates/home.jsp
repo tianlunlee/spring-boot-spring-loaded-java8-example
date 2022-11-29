@@ -8,7 +8,8 @@
     <div th:fragment="content">
         <h1>Welcome</h1>
 
-        <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
+        <p> <a th:href="@{/login.jsp}">Log In</a></p>
+        <p> <a th:href="@{/signup.jsp}">Register</a></p>
     </div>
 </body>
 </html>

@@ -5,7 +5,7 @@
 
     <groupId>hello</groupId>
     <artifactId>spring-boot-spring-loaded-java8-example</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
     <parent>

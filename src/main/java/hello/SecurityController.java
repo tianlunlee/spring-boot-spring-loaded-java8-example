@@ -26,4 +26,9 @@ public class SecurityController {
     public String login(final Model model) {
         return "login";
     }
+
+    @RequestMapping("/signup")
+    public String signup(final Model model) {
+        return "signup";
+    }
 }

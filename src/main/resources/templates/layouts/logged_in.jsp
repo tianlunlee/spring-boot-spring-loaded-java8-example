@@ -8,7 +8,7 @@
     <div style="padding: 10px;">
 
         <div>
-            <strong>Using the logged in layout</strong>
+            <strong>Logged in.</strong>
         </div>
 
         <div th:replace="${view} :: content">
